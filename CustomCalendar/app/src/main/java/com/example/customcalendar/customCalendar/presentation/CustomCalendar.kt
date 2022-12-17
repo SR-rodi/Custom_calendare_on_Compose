@@ -8,7 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import com.example.customcalendar.customCalendar.CustomCalendarViewModel.Companion.IMAGE_ARROW_ID
+import com.example.customcalendar.customCalendar.presentation.child.MonthPicker
+import com.example.customcalendar.customCalendar.viewmodel.CalendarViewModel
+import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.IMAGE_ARROW_ID
 import com.example.customcalendar.ui.theme.Green
 import java.util.*
 

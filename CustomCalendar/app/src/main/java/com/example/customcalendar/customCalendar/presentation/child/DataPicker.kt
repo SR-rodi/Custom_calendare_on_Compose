@@ -12,6 +12,7 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,9 +24,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.customCalendar.CustomCalendarViewModel.Companion.COLUMNS
 import com.example.customcalendar.customCalendar.data.Date
 import com.example.customcalendar.customCalendar.data.DayOfWeek
+import com.example.customcalendar.customCalendar.presentation.child.ScaleAnimation
+import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.COLUMNS
+import kotlinx.coroutines.launch
 
 @ExperimentalFoundationApi
 @Composable
@@ -61,7 +64,8 @@ fun DataPicker(
         }
 
         items(dateList) { date ->
-            ScaleAnimation(date.isSelected,scaleEffect)
+            ScaleAnimation(date,scaleEffect)
+
 
             Box(Modifier
                 .padding(top = 5.dp)

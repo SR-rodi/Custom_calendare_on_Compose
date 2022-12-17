@@ -1,4 +1,4 @@
-package com.example.customcalendar.customCalendar
+package com.example.customcalendar.customCalendar.presentation.child
 
 import androidx.compose.animation.core.*
 import androidx.compose.runtime.Composable
@@ -6,7 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.launch
 
 @Composable
-fun ScaleAnimation(key:Boolean,scaleEffect: Animatable<Float, AnimationVector1D>){
+fun ScaleAnimation(key:Any,scaleEffect: Animatable<Float, AnimationVector1D>){
     LaunchedEffect(key1 = key) {
         launch {
             scaleEffect.animateTo(

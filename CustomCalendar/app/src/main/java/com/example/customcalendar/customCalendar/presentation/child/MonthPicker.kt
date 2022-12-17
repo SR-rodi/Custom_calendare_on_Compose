@@ -1,4 +1,4 @@
-package com.example.customcalendar.customCalendar
+package com.example.customcalendar.customCalendar.presentation.child
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,8 +20,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.customCalendar.CustomCalendarViewModel.Companion.ID_ARROW_NEXT
-import com.example.customcalendar.customCalendar.CustomCalendarViewModel.Companion.ID_ARROW_PAST
+import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.ID_ARROW_NEXT
+import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.ID_ARROW_PAST
 
 @Composable
 fun MonthPicker(
