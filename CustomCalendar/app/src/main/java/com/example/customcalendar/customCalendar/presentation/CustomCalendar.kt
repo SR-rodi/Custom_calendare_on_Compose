@@ -10,11 +10,10 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
-import com.example.customcalendar.customCalendar.DataPicker
+import com.example.customcalendar.customCalendar.presentation.child.DataPicker
 import com.example.customcalendar.customCalendar.presentation.child.MonthPicker
 import com.example.customcalendar.customCalendar.viewmodel.CalendarViewModel
 import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.IMAGE_ARROW_ID
-import com.example.customcalendar.ui.theme.Green
 import java.util.*
 
 @ExperimentalFoundationApi
@@ -35,10 +34,9 @@ fun CustomCalendar(
     dateFontWeight: FontWeight = FontWeight.Light,
     inactiveDateColor: Color = Color.LightGray,
     activeDateColor: Color = Color.Black,
-    weekendDateColor: Color = Green,
+    weekendDateColor: Color = Color(0xFF589A6E),
     onClickData: (calendar: Calendar) -> Unit,
 ) {
-
 
     val monthNameState = viewModel.monthText.observeAsState("")
     val listDateState = viewModel.listDate.observeAsState(emptyList())

@@ -1,4 +1,4 @@
-package com.example.customcalendar.customCalendar
+package com.example.customcalendar.customCalendar.presentation.child
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalendar.data.Date
 import com.example.customcalendar.customCalendar.data.DayOfWeek
-import com.example.customcalendar.customCalendar.presentation.child.ScaleAnimation
 import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.COLUMNS
 
 @ExperimentalFoundationApi

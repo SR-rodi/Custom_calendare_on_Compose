@@ -7,7 +7,6 @@ import com.example.customcalendar.R
 import com.example.customcalendar.customCalendar.data.Date
 import java.util.*
 
-
 abstract class CustomCalendarViewModel : ViewModel() {
 
     protected val calendar = Calendar.getInstance()
