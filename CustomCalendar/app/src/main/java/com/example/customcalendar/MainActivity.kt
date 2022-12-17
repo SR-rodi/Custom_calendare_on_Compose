@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalendar.viewmodel.CalendarViewModel
-import com.example.customcalendar.customCalendar.CustomCalendar
+import com.example.customcalendar.customCalendar.presentation.CustomCalendar
 import java.text.SimpleDateFormat
 
 @Suppress("OPT_IN_IS_NOT_ENABLED")

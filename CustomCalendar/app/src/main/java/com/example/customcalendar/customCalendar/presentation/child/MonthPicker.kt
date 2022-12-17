@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.ID_ARROW_NEXT
 import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.ID_ARROW_PAST
@@ -29,6 +30,7 @@ fun MonthPicker(
     arrowImageId: Int,
     font:FontFamily,
     fontWeight: FontWeight,
+    textSizeMonth:TextUnit,
     rippleColor: Color,
     onClick: (idArrow: Int) -> Unit,
 ){
@@ -50,7 +52,9 @@ fun MonthPicker(
             painter = painterResource(id = arrowImageId),
             contentDescription = "")
         Text(
+
             modifier = Modifier.weight(1f),
+            fontSize = textSizeMonth,
             text = monthName,
             textAlign = TextAlign.Center,
             fontWeight = fontWeight,

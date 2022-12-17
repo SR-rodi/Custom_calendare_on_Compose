@@ -40,6 +40,7 @@ abstract class CustomCalendarViewModel : ViewModel() {
     protected fun getStartDayOfWeek(month: Int): Int {
         val newCalendar = Calendar.getInstance()
         newCalendar.set(Calendar.MONTH, month)
+        newCalendar.set(Calendar.YEAR,calendar.get(Calendar.YEAR))
         newCalendar.set(Calendar.DAY_OF_MONTH, 1)
         var dayOfWeek = newCalendar.get(Calendar.DAY_OF_WEEK)
         dayOfWeek = if (dayOfWeek == 1) 7 else dayOfWeek - 1

@@ -1,6 +1,7 @@
 package com.example.customcalendar.customCalendar
 
-import androidx.compose.animation.core.*
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,7 +13,6 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,12 +23,12 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import com.example.customcalendar.customCalendar.data.Date
 import com.example.customcalendar.customCalendar.data.DayOfWeek
 import com.example.customcalendar.customCalendar.presentation.child.ScaleAnimation
 import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.COLUMNS
-import kotlinx.coroutines.launch
 
 @ExperimentalFoundationApi
 @Composable
@@ -37,16 +37,19 @@ fun DataPicker(
     isClickArrow: Boolean,
     weekFontFamily: FontFamily,
     weekFontWeight: FontWeight,
-    selectorColor:Color,
+    selectorColor: Color,
     dateFontFamily: FontFamily,
     dateFontWeight: FontWeight,
+    textSizeDate:TextUnit,
+    textSizeWeek:TextUnit,
     inactiveDateColor: Color,
     activeDateColor: Color,
     weekendDateColor: Color,
     onClick: (date: Date) -> Unit,
 ) {
 
-    val scaleEffect: Animatable<Float, AnimationVector1D> = remember { Animatable(initialValue = 0.3f) }
+    val scaleEffect: Animatable<Float, AnimationVector1D> =
+        remember { Animatable(initialValue = 0.3f) }
 
     LazyVerticalGrid(
         cells = GridCells.Fixed(COLUMNS),
@@ -60,12 +63,12 @@ fun DataPicker(
                 textAlign = TextAlign.Center,
                 fontFamily = weekFontFamily,
                 fontWeight = weekFontWeight,
+                fontSize = textSizeWeek,
                 modifier = Modifier.padding(bottom = 10.dp))
         }
 
         items(dateList) { date ->
-            ScaleAnimation(date,scaleEffect)
-
+            ScaleAnimation(date, scaleEffect)
 
             Box(Modifier
                 .padding(top = 5.dp)
@@ -78,17 +81,16 @@ fun DataPicker(
                     role = Role.RadioButton,
                     onClick = { onClick(date) }
                 )
-
                 .background(
                     color = if (date.isSelected) selectorColor else Color.Transparent,
                     shape = RoundedCornerShape(360.dp)
                 ),
                 contentAlignment = Alignment.Center
-
             ) {
                 Text(
                     color = if (date.isPastMonth) inactiveDateColor else if (date.isWeekend) weekendDateColor else activeDateColor,
                     text = date.day.toString(),
+                    fontSize = textSizeDate,
                     textAlign = TextAlign.Center,
                     fontFamily = dateFontFamily,
                     fontWeight = dateFontWeight,
