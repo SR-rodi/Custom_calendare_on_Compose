@@ -5,14 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.customcalendar.R
+import com.example.customcalendar.customCalendar.data.Date
 import java.util.Calendar
 
 class CalendarViewModel : CustomCalendarViewModel() {
+    private var selectMonth = calendar.get(Calendar.MONTH)
 
     init {
-        createDateList()
+             createDateList()
         getMonthText()
     }
+
+
 
     fun onClickArrow(id: Int) {
         when (id) {
@@ -20,7 +24,7 @@ class CalendarViewModel : CustomCalendarViewModel() {
             ID_ARROW_PAST -> setPastMonth()
             else -> throw IndexOutOfBoundsException("invalid index")
         }
-        _isClickArrow .postValue(true)
+        _isClickArrow.postValue(true)
         createDateList()
         getMonthText()
     }
@@ -46,6 +50,7 @@ class CalendarViewModel : CustomCalendarViewModel() {
             }
             else list.add(Date(i))
         }
+        if (selectMonth ==calendar.get(Calendar.MONTH))
         list[calendar.get(Calendar.DAY_OF_MONTH) +startDay- 2].isSelected = true
         _listDate.postValue(list)
     }
@@ -56,9 +61,18 @@ class CalendarViewModel : CustomCalendarViewModel() {
     }
 
     fun createCalendar(date: Date): Calendar {
+
+        if (date.isPastMonth) {
+            _isClickArrow.postValue(true)
+            setPastMonth()
+            getMonthText()
+        }
+        else _isClickArrow.postValue(false)
+
+        selectMonth = calendar.get(Calendar.MONTH)
         calendar.set(Calendar.DAY_OF_MONTH, date.day)
-        _isClickArrow.postValue(false)
         createDateList()
+
         return calendar
     }
 }
@@ -131,22 +145,10 @@ abstract class CustomCalendarViewModel : ViewModel() {
     companion object {
         const val COLUMNS = 7
         const val IMAGE_ARROW_ID = R.drawable.ic_arrow
-        const val ARROW_PADDING = 10
         const val ID_ARROW_NEXT = 1
         const val ID_ARROW_PAST = -1
 
     }
-}
-
-class Date(
-    val day: Int,
-    var isSelected: Boolean = false,
-    var isWeekend: Boolean = false,
-    var isPastMonth: Boolean = false,
-)
-
-enum class IndicatorState {
-    SELECTED, NOT_SELECT
 }
 
 fun Int.toPastMonth() =

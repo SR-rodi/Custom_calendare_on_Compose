@@ -1,4 +1,4 @@
-package com.example.customcalendar
+package com.example.customcalendar.customCalendar.data
 
 enum class DayOfWeek( val text:String) {
     MONDAY("ПН"),
