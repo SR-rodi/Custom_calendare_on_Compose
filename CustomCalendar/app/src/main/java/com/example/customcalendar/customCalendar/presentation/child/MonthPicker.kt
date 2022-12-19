@@ -21,17 +21,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.ID_ARROW_NEXT
-import com.example.customcalendar.customCalendar.viewmodel.CustomCalendarViewModel.Companion.ID_ARROW_PAST
+import androidx.compose.ui.unit.sp
+import com.example.customcalendar.customCalendar.presentation.ID_ARROW_NEXT
+import com.example.customcalendar.customCalendar.presentation.ID_ARROW_PAST
+import com.example.customcalendar.customCalendar.presentation.IMAGE_ARROW_ID
 
 @Composable
 fun MonthPicker(
-    monthName: String,
-    arrowImageId: Int,
-    font:FontFamily,
-    fontWeight: FontWeight,
-    textSizeMonth:TextUnit,
-    rippleColor: Color,
+    monthName: String="",
+    arrowImageId: Int= IMAGE_ARROW_ID ,
+    font:FontFamily = FontFamily.Default,
+    fontWeight: FontWeight= FontWeight.Bold,
+    textSizeMonth:TextUnit = 18.sp,
+    rippleColor: Color= Color.Blue,
     onClick: (idArrow: Int) -> Unit,
 ){
 

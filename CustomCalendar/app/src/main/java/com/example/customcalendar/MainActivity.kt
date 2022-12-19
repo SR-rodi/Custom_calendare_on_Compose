@@ -5,30 +5,32 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.customcalendar.customCalendar.viewmodel.CalendarViewModel
+import com.example.customcalendar.customCalendar.data.CalendarBuilder
 import com.example.customcalendar.customCalendar.presentation.CustomCalendar
+
+import com.example.customcalendar.customCalendar.presentation.calendarState
 import java.text.SimpleDateFormat
 
-@Suppress("OPT_IN_IS_NOT_ENABLED")
+
 class MainActivity : ComponentActivity() {
-    private val viewModel = CalendarViewModel()
-
     @SuppressLint("SimpleDateFormat")
+    @Suppress("OPT_IN_IS_NOT_ENABLED")
     private val sdf = SimpleDateFormat("dd-MM-yyyy")
-
-    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
+            val calendarState = calendarState()
             CustomCalendar(
-                viewModel = viewModel,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 25.dp)
-            ) { calendar ->
+                modifier= Modifier.padding(horizontal = 16.dp, vertical = 25.dp),
+                calendarState = calendarState,
+                onClickMonth = {
+                    calendarState.value = CalendarBuilder.createCalendar()
+                }) { calendar ->
                 Toast.makeText(applicationContext,
                     sdf.format(calendar.timeInMillis),
                     Toast.LENGTH_SHORT).show()
